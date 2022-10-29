@@ -1,14 +1,14 @@
 import React from 'react';
-import axios from 'axios';
+
 
 import GameCard from '../components/GameCard';
 import SelectionGroup from '../components/selectionGroup';
-// import { useGetAllGamesQuery } from '../redux/services/ftpDb';
+import { useGetAllGamesQuery } from '../redux/services/ftpDb';
 import Logo from '../image/lighted-dj-board-164745.jpg';
 
 const Home = () => {
-  // const { data, isFetching, error } = useGetAllGamesQuery();
-  // console.log(data, 'DATA')
+  const { data, isFetching, error } = useGetAllGamesQuery();
+  console.log(data, 'DATA')
   const gameData = [
     {
       title: 'Fortnite',
@@ -62,12 +62,13 @@ const Home = () => {
       <SelectionGroup />
       <div className='flex flex-wrap gap-10 justify-center'>
         {/* {data?.slice(0, 40)?.map((game, i) => ( */}
-        {gameData.map((game, i) => (
+        {data?.map((game, i) => (
           <GameCard 
             key={i}
             title={game?.title}
-            image={game?.image}
+            image={game?.thumbnail}
             platform={game?.platform}
+            id={game?.id}
           />
         ))}
       </div>

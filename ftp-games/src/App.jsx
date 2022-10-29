@@ -14,7 +14,7 @@ function App() {
   return (
     <div className='w-full'>
       <Link to='/'>
-        <h1>FTP Games</h1>
+        <h1 className='relative top-0 font-bold'>FTP Games</h1>
       </Link>
       <Routes>
         <Route path='/' element={<Home />} />
