@@ -12,7 +12,7 @@ const Screenshot = ({ image }) => {
   };
 
   return (
-    <div onClick={handleClick}>
+    <div onClick={handleClick} className='hover:cursor-pointer'>
       <img
         src={image}
         className='w-[150px] h-[150px]'
