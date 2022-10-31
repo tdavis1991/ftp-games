@@ -3,12 +3,12 @@ import { useParams } from 'react-router-dom';
 
 import { useGetGameDetailsQuery } from '../redux/services/ftpDb';
 import GameModal from '../components/GameModal';
+import Screenshot from '../components/Screenshot';
 import Logo from '../image/lighted-dj-board-164745.jpg';
 
 const GameDetails = () => {
   const { id } = useParams();
   const { data, isFetching, error } = useGetGameDetailsQuery({ id });
-  console.log(data?.screenshots)
 
   return (
     <div className='flex-col'>
@@ -31,10 +31,7 @@ const GameDetails = () => {
           <h3 className='mb-8'>Screenshots</h3>
           <div className='flex gap-5'>
             {data?.screenshots?.map((image) => (
-              <img 
-                src={image.image}
-                className='w-[150px] h-[150px]'
-              />
+              <Screenshot image={image?.image} />
             ))}
           </div>
         </div>

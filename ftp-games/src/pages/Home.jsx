@@ -8,7 +8,6 @@ import Logo from '../image/lighted-dj-board-164745.jpg';
 
 const Home = () => {
   const { data, isFetching, error } = useGetAllGamesQuery();
-  console.log(data, 'DATA')
   const gameData = [
     {
       title: 'Fortnite',
