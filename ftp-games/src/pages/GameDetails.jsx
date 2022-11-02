@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { IoGameControllerOutline, IoCalendarOutline, IoGridOutline } from 'react-icons/io5';
 
 import { useGetGameDetailsQuery } from '../redux/services/ftpDb';
 import GameModal from '../components/GameModal';
@@ -12,7 +13,8 @@ const GameDetails = () => {
 
   return (
     <div className='flex-col'>
-      <div className='flex justify-center items-center'>
+      <div className='justify-center items-center'>
+        <h1 className='mb-10'>{data?.title}</h1>
         <div className='w-full'>
           <img 
             src={data?.thumbnail}
@@ -20,9 +22,14 @@ const GameDetails = () => {
             className='w-full'
           />
         </div>
-        <div className='flex-col w-5/6 ml-10'>
-          <h1 className='mb-10'>{data?.title}</h1>
-          <h3 className='font-bold mb-5'>Release Date: {data?.release_date}</h3>
+      </div>
+      <div className='flex mt-10 gap-10'>
+        <div className='w-1/2 justify-start'>
+          <h3 className='border-b-4 pb-5'><IoGameControllerOutline size={40} style={{ display: 'inline' }} /> Platforms: {data?.platform}</h3>
+          <h3 className='mb-5 border-b-4 py-5'><IoCalendarOutline size={40} style={{ display: 'inline' }} /> Release Date: {data?.release_date}</h3>
+          <h3 className='mb-5 border-b-4 pb-5'><IoGridOutline size={40} style={{ display: 'inline' }} /> Genre: {data?.genre}</h3>
+        </div>
+        <div className='w-1/2'>
           <p>{data?.description}</p>
         </div>
       </div>
@@ -44,3 +51,33 @@ const GameDetails = () => {
 }
 
 export default GameDetails;
+
+{/* <div className='flex-col'>
+<div className='flex justify-center items-center'>
+  <div className='w-full'>
+    <img 
+      src={data?.thumbnail}
+      alt='game.title'
+      className='w-full'
+    />
+  </div>
+  <div className='flex-col w-5/6 ml-10'>
+    <h1 className='mb-10'>{data?.title}</h1>
+    <h3 className='font-bold mb-5'>Release Date: {data?.release_date}</h3>
+    <p>{data?.description}</p>
+  </div>
+</div>
+{data?.screenshots.length ? (
+  <div className='mt-10'>
+    <h3 className='mb-8'>Screenshots</h3>
+    <div className='flex gap-5'>
+      {data?.screenshots?.map((image) => (
+        <Screenshot image={image?.image} />
+      ))}
+    </div>
+  </div>
+) : (
+  null
+)}
+
+</div> */}
