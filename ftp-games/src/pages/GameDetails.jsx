@@ -15,8 +15,9 @@ const GameDetails = () => {
       <div className='flex justify-center items-center'>
         <div className='w-full'>
           <img 
-            src={data?.thumbnail}
-            alt='game.title'
+            // src={data?.thumbnail}
+            src={Logo}
+            alt={`${data?.title}`}
             className='w-full'
           />
         </div>

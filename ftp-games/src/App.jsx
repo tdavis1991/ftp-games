@@ -4,12 +4,8 @@ import './App.css';
 
 import Home from './pages/Home';
 import GameDetails from './pages/GameDetails';
-import { useGetAllGamesQuery } from './redux/services/ftpDb';
 
 function App() {
-  // const { data, isFetching, error } = useGetAllGamesQuery();
-
-  // console.log(data, 'DATA')
 
   return (
     <div className='w-full'>
