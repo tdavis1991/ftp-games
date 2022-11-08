@@ -37,13 +37,17 @@ const GameDetails = () => {
         <a href={`${data?.game_url}`}>
           <button className='bg-blue-400'>Go to Website</button>
         </a>
-        <select className='rounded-md'>
-          <option>OS: {data?.minimum_system_requirements?.os}</option>
-          <option> Processor: {data?.minimum_system_requirements?.processor}</option>
-          <option>Memory: {data?.minimum_system_requirements?.memory}</option>
-          <option>Graphics: {data?.minimum_system_requirements?.graphics}</option>
-          <option>Storage: {data?.minimum_system_requirements?.storage}</option>
-        </select>
+        {data?.minimum_system_requirements ? (
+          <select className='rounded-md'>
+            <option>OS: {data?.minimum_system_requirements?.os}</option>
+            <option> Processor: {data?.minimum_system_requirements?.processor}</option>
+            <option>Memory: {data?.minimum_system_requirements?.memory}</option>
+            <option>Graphics: {data?.minimum_system_requirements?.graphics}</option>
+            <option>Storage: {data?.minimum_system_requirements?.storage}</option>
+          </select>
+        ) : (
+          null
+        )}
       </div>
       {data?.screenshots.length ? (
         <div className='mt-10'>
