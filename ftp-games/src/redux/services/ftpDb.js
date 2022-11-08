@@ -12,11 +12,13 @@ export const ftpDb = createApi({
   }),
   endpoints: (builder) => ({
     getAllGames: builder.query({ query: () => '/games' }),
-    getGameDetails: builder.query({ query: ({ id }) => `/game?id=${id}` })
+    getSortedGames: builder.query({ query: (platform, category, sort_by) => `/games?platform=${platform}&category=${category}&sort_by=${sort_by}` }),
+    getGameDetails: builder.query({ query: ({ id }) => `/game?id=${id}` }),
   }),
 });
 
 export const {
   useGetAllGamesQuery,
   useGetGameDetailsQuery,
+  useGetSortedGamesQuery,
 } = ftpDb;

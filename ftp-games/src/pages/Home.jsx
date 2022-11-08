@@ -8,48 +8,6 @@ import Logo from '../image/lighted-dj-board-164745.jpg';
 
 const Home = () => {
   const { data, isFetching, error } = useGetAllGamesQuery();
-  const gameData = [
-    {
-      title: 'Fortnite',
-      image: Logo,
-      platform: 'PC'
-    },
-    {
-      title: 'Call of Duty',
-      image: Logo,
-      platform: 'PC'
-    },
-    {
-      title: 'Resident Evil',
-      image: Logo,
-      platform: 'PC'
-    },
-    {
-      title: 'Clash Royale',
-      image: Logo,
-      platform: 'PC'
-    },
-    {
-      title: 'Horizon',
-      image: Logo,
-      platform: 'PC'
-    },
-    {
-      title: 'Horizon',
-      image: Logo,
-      platform: 'PC'
-    },
-    {
-      title: 'Horizon',
-      image: Logo,
-      platform: 'PC'
-    },
-    {
-      title: 'Horizon',
-      image: Logo,
-      platform: 'PC'
-    },
-  ]
 
 
   return (

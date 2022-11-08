@@ -17,8 +17,8 @@ const GameDetails = () => {
         <h1 className='mb-10'>{data?.title}</h1>
         <div className='w-full'>
           <img 
-            // src={data?.thumbnail}
-            src={Logo}
+            src={data?.thumbnail}
+            // src={Logo}
             alt={`${data?.title}`}
             className='w-full'
           />
@@ -29,6 +29,9 @@ const GameDetails = () => {
           <h3 className='border-b-4 pb-5'><IoGameControllerOutline size={40} style={{ display: 'inline' }} /> Platforms: {data?.platform}</h3>
           <h3 className='mb-5 border-b-4 py-5'><IoCalendarOutline size={40} style={{ display: 'inline' }} /> Release Date: {data?.release_date}</h3>
           <h3 className='mb-5 border-b-4 pb-5'><IoGridOutline size={40} style={{ display: 'inline' }} /> Genre: {data?.genre}</h3>
+          {/* <h3 className='border-b-4 pb-5'>Platforms: {data?.platform}</h3>
+          <h3 className='mb-5 border-b-4 py-5'>Release Date: {data?.release_date}</h3>
+          <h3 className='mb-5 border-b-4 pb-5'>Genre: {data?.genre}</h3> */}
         </div>
         <div className='w-1/2'>
           <p>{data?.description}</p>
@@ -39,6 +42,7 @@ const GameDetails = () => {
           <button className='bg-blue-400'>Go to Website</button>
         </a>
         <select className='rounded-md'>
+          <option>Minimum System Requirements</option>
           <option>OS: {data?.minimum_system_requirements?.os}</option>
           <option> Processor: {data?.minimum_system_requirements?.processor}</option>
           <option>Memory: {data?.minimum_system_requirements?.memory}</option>
@@ -47,7 +51,7 @@ const GameDetails = () => {
         </select>
       </div>
       {data?.screenshots.length ? (
-        <div className='mt-10'>
+        <div className='flex-col items-start mt-10'>
           <h3 className='mb-8'>Screenshots</h3>
           <div className='flex gap-5'>
             {data?.screenshots?.map((image) => (
@@ -58,7 +62,6 @@ const GameDetails = () => {
       ) : (
         null
       )}
-      
     </div>
   )
 }
