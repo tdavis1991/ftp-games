@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import GameCard from '../components/GameCard';
+import Pagination from '../components/Pagination';
 import { useGetSortedGamesQuery, useGetAllGamesQuery } from '../redux/services/ftpDb';
 import Logo from '../image/lighted-dj-board-164745.jpg';
 import { platforms, categories, sort_by } from '../assets/constants';
@@ -12,27 +13,30 @@ const Home = () => {
       platform: '',
       category: '',
       sortBy: ''
-  });
+  }); 
+
   const { data, isFetching, error } = useGetSortedGamesQuery({platform: sort.platform, category: sort.category, sort_by: sort.sortBy});
   const { data: allGames, isFetching: fetchingAll, error: errorAll } = useGetAllGamesQuery();
-  const [selection, setSelection] = useState('');
- 
-  console.log(window.performance);
 
   useEffect(() => {
     setGames(allGames)
-  }, []);
+  }, [allGames]);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(20);
+  const lastPostIndex = currentPage * postsPerPage;
+  const firstPostIndex = lastPostIndex - postsPerPage;
+  console.log(currentPage, lastPostIndex)
+  // const currentPost = games.slice(firstPostIndex, lastPostIndex);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setSort((prevState) => {
       return {
         ...prevState,
-        [name]: value
+        [name]: value 
       }
     })
-    console.log(sort)
   };
 
   const handleSubmit = (e) => {
@@ -47,7 +51,7 @@ const Home = () => {
               src='https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt9695da32975f3e85/62cc8547719eb73892495716/VALORANT_ANNO22_SHATTERED_16x9_27s0.jpg'
               className='w-full'
           />
-      <form onSubmit={handleSubmit} className='mb-10 bg-stone-300'>
+      <form onSubmit={handleSubmit} className='mb-10 p-2 bg-stone-300'>
         <label>
           Platform: 
           <select name='platform' value={sort.platform} onChange={handleChange} className='rounded-lg mr-5 ml-2'>
@@ -75,8 +79,7 @@ const Home = () => {
         <button type='submit' className='bg-green-500 rounded-xl'>GO!!</button>
       </form>
       <div className='flex flex-wrap gap-10 justify-center'>
-        {/* {data?.slice(0, 40)?.map((game, i) => ( */}
-        {games?.slice(1)?.map((game, i) => (
+        {games?.slice(firstPostIndex, lastPostIndex)?.map((game, i) => (
           <GameCard 
             key={i}
             title={game?.title}
@@ -86,6 +89,11 @@ const Home = () => {
           />
         ))}
       </div>
+      {games.length > 20 ? (
+        <Pagination totalPosts={games.length} postsPerPage={postsPerPage} currentPage={currentPage} setCurrentpage={setCurrentPage} />
+      ) : (
+        null
+      )}
     </div>
   )
 }
