@@ -12,7 +12,6 @@ const Home = () => {
   const [category, setCategory] = useState('action');
   const [sortBy, setSortBy] = useState('release-date')
   const { data, isFetching, error } = useGetSortedGamesQuery({platform: platform, category: category, sort_by: sortBy});
-  console.log(data[0], 'DATA')
   const [selection, setSelection] = useState('');
 
   const handleChange = (e) => {
