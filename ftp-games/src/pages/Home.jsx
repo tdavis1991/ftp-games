@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import GameCard from '../components/GameCard';
-import Pagination from '../components/Pagination';
 import { useGetSortedGamesQuery, useGetAllGamesQuery } from '../redux/services/ftpDb';
 import Logo from '../image/lighted-dj-board-164745.jpg';
 import { platforms, categories, sort_by } from '../assets/constants';
@@ -15,19 +14,13 @@ const Home = () => {
       sortBy: ''
   }); 
 
+
   const { data, isFetching, error } = useGetSortedGamesQuery({platform: sort.platform, category: sort.category, sort_by: sort.sortBy});
   const { data: allGames, isFetching: fetchingAll, error: errorAll } = useGetAllGamesQuery();
 
   useEffect(() => {
     setGames(allGames)
-  }, [allGames]);
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(20);
-  const lastPostIndex = currentPage * postsPerPage;
-  const firstPostIndex = lastPostIndex - postsPerPage;
-  console.log(currentPage, lastPostIndex)
-  // const currentPost = games.slice(firstPostIndex, lastPostIndex);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -47,6 +40,7 @@ const Home = () => {
 
   return (
     <div className='w-full mt-10'>
+
       <img 
               src='https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt9695da32975f3e85/62cc8547719eb73892495716/VALORANT_ANNO22_SHATTERED_16x9_27s0.jpg'
               className='w-full'
@@ -79,7 +73,7 @@ const Home = () => {
         <button type='submit' className='bg-green-500 rounded-xl'>GO!!</button>
       </form>
       <div className='flex flex-wrap gap-10 justify-center'>
-        {games?.slice(firstPostIndex, lastPostIndex)?.map((game, i) => (
+        {games?.map((game, i) => (
           <GameCard 
             key={i}
             title={game?.title}
@@ -89,11 +83,6 @@ const Home = () => {
           />
         ))}
       </div>
-      {games.length > 20 ? (
-        <Pagination totalPosts={games.length} postsPerPage={postsPerPage} currentPage={currentPage} setCurrentpage={setCurrentPage} />
-      ) : (
-        null
-      )}
     </div>
   )
 }
