@@ -50,7 +50,7 @@ const GameDetails = () => {
         )}
       </div>
       {data?.screenshots.length ? (
-        <div className='mt-10'>
+        <div className='flex mt-10 flex-col items-start'>
           <h3 className='mb-8'>Screenshots</h3>
           <div className='flex gap-5'>
             {data?.screenshots?.map((image) => (

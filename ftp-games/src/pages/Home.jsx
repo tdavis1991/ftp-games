@@ -2,25 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import GameCard from '../components/GameCard';
-import { useGetSortedGamesQuery, useGetAllGamesQuery } from '../redux/services/ftpDb';
+import { useGetAllGamesQuery } from '../redux/services/ftpDb';
 import Logo from '../image/lighted-dj-board-164745.jpg';
 import { platforms, categories, sort_by } from '../assets/constants';
 
 const Home = () => {
-  const [games, setGames] = useState([]);
   const [sort, setSort] = useState({
       platform: '',
       category: '',
       sortBy: ''
   }); 
 
+  const { data, isFetching, error } = useGetAllGamesQuery();
 
-  const { data, isFetching, error } = useGetSortedGamesQuery({platform: sort.platform, category: sort.category, sort_by: sort.sortBy});
-  const { data: allGames, isFetching: fetchingAll, error: errorAll } = useGetAllGamesQuery();
-
-  useEffect(() => {
-    setGames(allGames)
-  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -73,7 +67,7 @@ const Home = () => {
         <button type='submit' className='bg-green-500 rounded-xl'>GO!!</button>
       </form>
       <div className='flex flex-wrap gap-10 justify-center'>
-        {games?.map((game, i) => (
+        {data?.map((game, i) => (
           <GameCard 
             key={i}
             title={game?.title}

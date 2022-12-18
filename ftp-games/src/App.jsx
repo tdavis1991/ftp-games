@@ -4,7 +4,6 @@ import './App.css';
 
 import Home from './pages/Home';
 import GameDetails from './pages/GameDetails';
-import { useGetAllGamesQuery } from './redux/services/ftpDb';
 
 function App() {
 
