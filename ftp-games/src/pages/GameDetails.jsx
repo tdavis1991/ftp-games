@@ -10,6 +10,7 @@ import Logo from '../image/lighted-dj-board-164745.jpg';
 const GameDetails = () => {
   const { id } = useParams();
   const { data, isFetching, error } = useGetGameDetailsQuery({ id });
+  console.log('DETAILS', data)
 
   return (
     <div className='flex-col'>
@@ -23,7 +24,7 @@ const GameDetails = () => {
           />
         </div>
       </div>
-      <div className='flex mt-10 gap-10'>
+      <div className='flex mt-10 gap-10 justify-center items-center bg-black/5 bg-opacity-80 backdrop-blur-sm rounded-md p-5'>
         <div className='w-1/2 justify-start'>
           <h3 className='border-b-4 pb-5'><IoGameControllerOutline size={40} style={{ display: 'inline' }} /> Platforms: {data?.platform}</h3>
           <h3 className='mb-5 border-b-4 py-5'><IoCalendarOutline size={40} style={{ display: 'inline' }} /> Release Date: {data?.release_date}</h3>
@@ -50,7 +51,7 @@ const GameDetails = () => {
         )}
       </div>
       {data?.screenshots.length ? (
-        <div className='mt-10'>
+        <div className='flex mt-10 flex-col items-start'>
           <h3 className='mb-8'>Screenshots</h3>
           <div className='flex gap-5'>
             {data?.screenshots?.map((image) => (
